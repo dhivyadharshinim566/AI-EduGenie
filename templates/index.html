@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>EduGenie</title>
+  <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="page">
+  <header class="hero">
+    <div class="badge">AI LEARNING ASSISTANT</div>
+    <h1>EduGenie</h1>
+    <p>Google Gemini Powered Learning Assistant</p>
+  </header>
+
+  <section class="card">
+    <form method="post" action="/process">
+      <label for="task">Choose a task</label>
+      <select id="task" name="task">
+        <option value="QnA" {% if task == "QnA" %}selected{% endif %}>QnA</option>
+        <option value="Explain" {% if task == "Explain" %}selected{% endif %}>Explain</option>
+        <option value="Quiz" {% if task == "Quiz" %}selected{% endif %}>Quiz</option>
+        <option value="Summary" {% if task == "Summary" %}selected{% endif %}>Summary</option>
+        <option value="Recommend Path" {% if task == "Recommend Path" %}selected{% endif %}>Recommend Path</option>
+      </select>
+
+      <label for="user_input">Enter your question, topic or passage</label>
+      <textarea id="user_input" name="user_input" rows="9"
+        placeholder="Example: Explain the Pythagoras theorem">{{ user_input or "" }}</textarea>
+
+      <button type="submit">Generate Result</button>
+    </form>
+  </section>
+
+  {% if result %}
+  <section class="card result">
+    <h2>Result</h2>
+    <pre>{{ result }}</pre>
+  </section>
+  {% endif %}
+
+  <section class="features">
+    <div><b>QnA</b><span>Ask educational questions</span></div>
+    <div><b>Explain</b><span>Simplify difficult concepts</span></div>
+    <div><b>Quiz</b><span>Generate 3 MCQs</span></div>
+    <div><b>Summary</b><span>Summarize long text</span></div>
+    <div><b>Learning Path</b><span>Beginner to advanced guidance</span></div>
+  </section>
+
+  <footer>EduGenie • FastAPI • Gemini • LaMini-Flan-T5</footer>
+</div>
+</body>
+</html>
